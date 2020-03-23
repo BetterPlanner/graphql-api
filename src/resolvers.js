@@ -9,6 +9,7 @@ export const resolvers = {
           let searchQuery = {};
 
           if ( search ) {
+            // search by code or by name.
             searchQuery = {
                 $or: [
                     { code: { $regex: search, $options: 'i' } },
