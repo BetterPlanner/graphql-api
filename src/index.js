@@ -1,4 +1,4 @@
-import { ApolloServer } from "apollo-server-express";
+import { ApolloServer, gql } from "apollo-server-express";
 import express from "express";
 import mongoose from "mongoose";
 import { resolvers } from "./resolvers";
@@ -7,6 +7,13 @@ import { typeDefs } from "./typeDefs";
 
 const startServer = async () => {
     const app = express();
+
+    app.get('/rest-endpoint', function (req, res) {
+
+        return res.send({
+            success: 'Hello World!'
+        })
+    })
 
     const server = new ApolloServer({ 
         typeDefs, 

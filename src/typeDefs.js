@@ -4,6 +4,12 @@ export const typeDefs = gql`
 type Query {
   courses: [Course!]!
   getCourse(search: String): [Course!]
+  getTree(search: String): Tree
+}
+
+type Tree {
+  name: String!
+  children: [Tree]
 }
 
 type Course {
