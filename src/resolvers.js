@@ -55,7 +55,7 @@ export const resolvers = {
       },
       getTree: async (_, args) => {
         const { search = null } = args;
-        console.log(args)
+        // console.log(args)
         let searchQuery = {};
         if ( search ) {
             // search by code or by name.
