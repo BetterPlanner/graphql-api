@@ -17,11 +17,13 @@ async function req_for ( course ) {
 async function make_tree (course, req_for_arr) {
     var return_object = {}
     if ( req_for_arr.length == 0 ) {
-        return_object.name = course
+        return_object.code = course
+        return_object.hasChildren = false
     }
     else {
-        return_object.name = course
+        return_object.code = course
         return_object.children = []
+        return_object.hasChildren = true
         for (var code of req_for_arr) {
             const next_req_for = await req_for(code);
             return_object.children.push(await make_tree(code, next_req_for))

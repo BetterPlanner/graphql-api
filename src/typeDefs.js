@@ -8,8 +8,9 @@ type Query {
 }
 
 type Tree {
-  name: String!
+  code: String!
   children: [Tree]
+  hasChildren: Boolean!
 }
 
 type Course {
