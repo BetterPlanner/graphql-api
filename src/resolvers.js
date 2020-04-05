@@ -26,7 +26,9 @@ async function make_tree (course, req_for_arr) {
         return_object.hasChildren = true
         for (var code of req_for_arr) {
             const next_req_for = await req_for(code);
-            return_object.children.push(await make_tree(code, next_req_for))
+            const next_hasChildren = next_req_for.length > 0 ? true : false;
+            return_object.children.push({code: code, hasChildren: next_hasChildren})
+            // return_object.children.push(await make_tree(code, next_req_for))
         }
     }
     return return_object
@@ -66,7 +68,11 @@ export const resolvers = {
             };
         }
         const course = await Course.findOne(searchQuery);
+        
+        // var hrstart = process.hrtime()
         const tree = await make_tree(search, course.required_for);
+        // var hrend = process.hrtime(hrstart)
+        // console.info('Execution time (%s): %ds %dms', search, hrend[0], hrend[1] / 1000000)
         return tree
       }
     },
